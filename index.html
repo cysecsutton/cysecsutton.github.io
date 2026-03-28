@@ -4,735 +4,477 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gareth Sutton — Cyber Security Professional</title>
-<link href="https://fonts.googleapis.com/css2?family=Calibri:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy:   #1B3A5C;
-    --teal:   #006B6B;
-    --teal-light: #E8F4F4;
-    --bg:     #F7F9FC;
-    --bg2:    #FFFFFF;
-    --bg3:    #EEF2F7;
-    --border: #D8E0EA;
-    --text:   #1A1A2E;
-    --muted:  #4A5568;
-    --dim:    #8A9AB0;
-    --green:  #1E8449;
-    --green-bg: #D5F5E3;
-    --blue-bg:  #D6EAF8;
-    --blue:     #1A5276;
-    --accent:   #006B6B;
-    --red:      #C0392B;
+    --bg:        #0F1923;
+    --bg2:       #162030;
+    --bg3:       #1C2B3A;
+    --bg4:       #243445;
+    --border:    #2A3F55;
+    --border2:   #1E3048;
+    --teal:      #2DD4AA;
+    --teal-dim:  rgba(45,212,170,0.10);
+    --teal-mid:  rgba(45,212,170,0.22);
+    --text:      #E8EFF8;
+    --text2:     #B0C4D8;
+    --muted:     #6B8FAD;
+    --dim:       #3D5570;
+    --green:     #2ECC82;
+    --green-bg:  rgba(46,204,130,0.12);
+    --blue:      #60A5FA;
+    --blue-bg:   rgba(96,165,250,0.12);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    line-height: 1.65;
+    background: var(--bg); color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 15px; line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ── NAV ─────────────────────────────────────────── */
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: var(--navy);
+    background: rgba(15,25,35,0.96); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border2);
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 3rem; height: 56px;
+    padding: 0 3rem; height: 54px;
   }
-
-  .nav-logo {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.78rem; color: #7EC8C8; letter-spacing: 0.04em;
-  }
-
+  .nav-logo { font-family: 'DM Mono', monospace; font-size: 0.76rem; color: var(--teal); letter-spacing: 0.06em; }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    font-size: 0.82rem; font-weight: 500; color: rgba(255,255,255,0.65);
-    text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s;
-  }
-  .nav-links a:hover { color: #7EC8C8; }
+  .nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--teal); }
 
-  /* ── HERO ─────────────────────────────────────────── */
+  /* HERO */
   .hero {
-    background: var(--navy);
-    padding: 100px 3rem 64px;
-    position: relative; overflow: hidden;
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 100px 3rem 5rem; position: relative; overflow: hidden;
+    background: var(--bg);
   }
-
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(45,212,170,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(45,212,170,0.025) 1px, transparent 1px);
+    background-size: 48px 48px; pointer-events: none;
+  }
   .hero::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0; height: 4px;
-    background: linear-gradient(90deg, var(--teal) 0%, #7EC8C8 50%, var(--teal) 100%);
+    content: ''; position: absolute; top: 5%; left: -10%;
+    width: 60vw; height: 60vw; max-width: 750px; max-height: 750px;
+    background: radial-gradient(ellipse, rgba(45,212,170,0.05) 0%, transparent 65%);
+    pointer-events: none;
   }
+  .hero-inner { max-width: 860px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
 
-  .hero-inner {
-    max-width: 860px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: end;
-  }
-
-  .hero-tag {
-    font-family: 'DM Mono', monospace; font-size: 0.72rem;
-    color: #7EC8C8; letter-spacing: 0.12em; text-transform: uppercase;
-    margin-bottom: 1rem;
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace; font-size: 0.71rem; color: var(--teal);
+    letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
     opacity: 0; animation: fadeUp 0.5s 0.1s forwards;
   }
+  .hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--teal); }
 
+  /* NAME — solid colour only, no background-clip tricks */
   .hero-name {
-    font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 700;
-    color: #ffffff; letter-spacing: -0.02em; line-height: 1.05;
-    margin-bottom: 0.6rem;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 700; color: var(--text);
+    letter-spacing: -0.03em; line-height: 1.0;
+    margin-bottom: 1rem;
     opacity: 0; animation: fadeUp 0.5s 0.2s forwards;
   }
+  .hero-name-accent { color: var(--teal); }
 
-  .hero-title {
-    font-size: 1.05rem; font-weight: 500; color: #7EC8C8;
-    margin-bottom: 0.4rem;
-    opacity: 0; animation: fadeUp 0.5s 0.3s forwards;
-  }
-
-  .hero-sub {
-    font-size: 0.9rem; color: rgba(255,255,255,0.55); font-weight: 400;
-    margin-bottom: 2rem;
-    opacity: 0; animation: fadeUp 0.5s 0.35s forwards;
-  }
+  .hero-title { font-size: 1.08rem; font-weight: 500; color: var(--text2); margin-bottom: 0.45rem; opacity: 0; animation: fadeUp 0.5s 0.3s forwards; }
+  .hero-sub   { font-size: 0.87rem; color: var(--muted); margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.5s 0.35s forwards; }
 
   .hero-contact {
-    display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem;
+    display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; margin-bottom: 2.5rem;
     opacity: 0; animation: fadeUp 0.5s 0.4s forwards;
   }
+  .hero-contact a, .hero-contact span { font-size: 0.83rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .hero-contact a:hover { color: var(--teal); }
+  .hero-contact .sep { color: var(--dim); }
 
-  .hero-contact a, .hero-contact span {
-    font-size: 0.82rem; color: rgba(255,255,255,0.6);
-    text-decoration: none; display: flex; align-items: center; gap: 0.35rem;
-    transition: color 0.2s;
+  .hero-badges { display: flex; flex-wrap: wrap; gap: 0.55rem; opacity: 0; animation: fadeUp 0.5s 0.45s forwards; }
+  .hb {
+    font-family: 'DM Mono', monospace; font-size: 0.71rem; font-weight: 500;
+    padding: 0.32rem 0.8rem; border: 1px solid; letter-spacing: 0.03em;
   }
-  .hero-contact a:hover { color: #7EC8C8; }
-  .hero-contact .dot { color: rgba(255,255,255,0.25); }
+  .hb-g { background: var(--green-bg); border-color: rgba(46,204,130,0.28); color: var(--green); }
+  .hb-b { background: var(--blue-bg);  border-color: rgba(96,165,250,0.28);  color: var(--blue); }
+  .hb-t { background: var(--teal-dim); border-color: var(--teal-mid);        color: var(--teal); }
 
-  .hero-badges {
-    display: flex; flex-direction: column; gap: 0.6rem; align-items: flex-end;
-    opacity: 0; animation: fadeUp 0.5s 0.45s forwards;
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 3rem;
+    font-family: 'DM Mono', monospace; font-size: 0.63rem; color: var(--dim);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.6rem;
+    opacity: 0; animation: fadeUp 0.5s 0.6s forwards;
   }
+  .hero-scroll::before { content: ''; width: 24px; height: 1px; background: var(--dim); }
 
-  .badge {
-    padding: 0.4rem 0.9rem; font-size: 0.75rem; font-weight: 600;
-    letter-spacing: 0.03em; white-space: nowrap;
-  }
-  .badge-earned {
-    background: var(--green-bg); color: var(--green);
-    border: 1px solid rgba(30,132,73,0.3);
-  }
-  .badge-active {
-    background: var(--blue-bg); color: var(--blue);
-    border: 1px solid rgba(26,82,118,0.3);
-  }
-  .badge-available {
-    background: rgba(0,107,107,0.15); color: #7EC8C8;
-    border: 1px solid rgba(126,200,200,0.3);
-  }
+  /* SECTIONS */
+  section { padding: 5.5rem 3rem; }
+  .s-alt  { background: var(--bg2); }
+  .inner  { max-width: 860px; margin: 0 auto; }
 
-  /* ── SECTIONS ─────────────────────────────────────── */
-  section { padding: 5rem 3rem; }
-  section:nth-child(odd) { background: var(--bg2); }
-  section:nth-child(even) { background: var(--bg); }
-
-  .inner { max-width: 860px; margin: 0 auto; }
-
-  .section-eyebrow {
-    font-family: 'DM Mono', monospace; font-size: 0.68rem;
-    color: var(--teal); letter-spacing: 0.15em; text-transform: uppercase;
-    margin-bottom: 0.5rem;
+  .s-eye {
+    font-family: 'DM Mono', monospace; font-size: 0.67rem;
+    color: var(--teal); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem;
   }
-
-  .section-title {
-    font-size: 1.75rem; font-weight: 700; color: var(--navy);
-    letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 2.5rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid var(--border);
-  }
-
-  .section-title span { color: var(--teal); }
-
-  /* ── ABOUT ────────────────────────────────────────── */
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start;
-  }
-
-  .about-text p {
-    font-size: 0.95rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem;
-  }
-  .about-text p strong { color: var(--text); font-weight: 600; }
-
-  .about-pull {
-    margin-top: 1.5rem; padding: 1.1rem 1.4rem;
-    border-left: 3px solid var(--teal); background: var(--teal-light);
-    font-size: 0.88rem; color: var(--teal); line-height: 1.7;
-    font-style: italic;
-  }
-
-  .about-sidebar { display: flex; flex-direction: column; gap: 0.75rem; }
-
-  .sidebar-item {
-    padding: 1rem 1.2rem; background: var(--bg3);
-    border: 1px solid var(--border); border-left: 3px solid var(--navy);
-  }
-  .sidebar-label {
-    font-family: 'DM Mono', monospace; font-size: 0.62rem;
-    color: var(--dim); text-transform: uppercase; letter-spacing: 0.12em;
-    margin-bottom: 0.35rem;
-  }
-  .sidebar-value { font-size: 0.85rem; color: var(--text); font-weight: 500; line-height: 1.4; }
-
-  .tag-grid { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.35rem; }
-  .tag {
-    font-size: 0.72rem; padding: 0.2rem 0.6rem;
-    background: var(--bg2); border: 1px solid var(--border);
-    color: var(--muted); font-weight: 500;
-  }
-
-  /* ── CERTIFICATIONS ───────────────────────────────── */
-  .certs-table { width: 100%; border-collapse: collapse; }
-  .certs-table th {
-    background: var(--navy); color: white; font-size: 0.78rem;
-    font-weight: 600; padding: 0.65rem 1rem; text-align: left; letter-spacing: 0.02em;
-  }
-  .certs-table td {
-    padding: 0.65rem 1rem; font-size: 0.88rem; border-bottom: 1px solid var(--border);
-    vertical-align: middle;
-  }
-  .certs-table tr:last-child td { border-bottom: none; }
-  .certs-table tr:nth-child(even) td { background: var(--bg3); }
-  .certs-table tr:nth-child(odd) td { background: var(--bg2); }
-
-  .status-pill {
-    display: inline-block; font-size: 0.72rem; font-weight: 600;
-    padding: 0.2rem 0.65rem; letter-spacing: 0.03em;
-  }
-  .pill-earned { background: var(--green-bg); color: var(--green); }
-  .pill-studying { background: var(--blue-bg); color: var(--blue); }
-  .pill-planned { background: var(--bg3); color: var(--dim); border: 1px solid var(--border); }
-
-  /* ── PORTFOLIO ────────────────────────────────────── */
-  .portfolio-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1.25rem;
-  }
-
-  .p-card {
-    background: var(--bg2); border: 1px solid var(--border);
-    padding: 1.75rem; transition: border-color 0.2s, box-shadow 0.2s;
-    display: flex; flex-direction: column;
-  }
-  .p-card:hover {
-    border-color: var(--teal); box-shadow: 0 4px 20px rgba(0,107,107,0.08);
-  }
-
-  .p-card-num {
-    font-family: 'DM Mono', monospace; font-size: 0.62rem;
-    color: var(--dim); letter-spacing: 0.1em; margin-bottom: 0.5rem;
-  }
-  .p-card-type {
-    font-size: 0.72rem; font-weight: 600; color: var(--teal);
-    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;
-  }
-  .p-card-title {
-    font-size: 1rem; font-weight: 700; color: var(--navy);
-    margin-bottom: 0.65rem; line-height: 1.3;
-  }
-  .p-card-desc {
-    font-size: 0.85rem; color: var(--muted); line-height: 1.7;
-    margin-bottom: 1.25rem; flex: 1;
-  }
-  .p-card-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.25rem; }
-
-  .p-card-link {
-    font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 500;
-    color: var(--teal); text-decoration: none; display: inline-flex;
-    align-items: center; gap: 0.4rem; transition: gap 0.2s;
-    border-top: 1px solid var(--border); padding-top: 1rem; margin-top: auto;
-  }
-  .p-card-link:hover { gap: 0.7rem; color: var(--navy); }
-
-  /* CV card special */
-  .p-card-cv {
-    background: var(--navy); border-color: var(--navy);
-  }
-  .p-card-cv .p-card-num { color: rgba(255,255,255,0.4); }
-  .p-card-cv .p-card-type { color: #7EC8C8; }
-  .p-card-cv .p-card-title { color: white; }
-  .p-card-cv .p-card-desc { color: rgba(255,255,255,0.6); }
-  .p-card-cv .tag { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); }
-  .p-card-cv .p-card-link { border-color: rgba(255,255,255,0.15); color: #7EC8C8; }
-  .p-card-cv .p-card-link:hover { color: white; }
-
-  /* ── SKILLS ───────────────────────────────────────── */
-  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-
-  .skill-group-title {
-    font-family: 'DM Mono', monospace; font-size: 0.65rem;
-    color: var(--dim); text-transform: uppercase; letter-spacing: 0.15em;
-    padding-bottom: 0.6rem; margin-bottom: 1.25rem;
+  .s-title {
+    font-size: 1.8rem; font-weight: 700; color: var(--text);
+    letter-spacing: -0.02em; line-height: 1.1;
+    margin-bottom: 2.5rem; padding-bottom: 1rem;
     border-bottom: 1px solid var(--border);
   }
+  .s-title em { color: var(--teal); font-style: normal; }
 
-  .skill-row { margin-bottom: 1rem; }
-  .skill-meta {
-    display: flex; justify-content: space-between; margin-bottom: 0.35rem;
+  /* ABOUT */
+  .ab-grid { display: grid; grid-template-columns: 1fr 255px; gap: 3rem; align-items: start; }
+  .ab-body p { font-size: 0.93rem; color: var(--text2); line-height: 1.85; margin-bottom: 1rem; }
+  .ab-body strong { color: var(--text); font-weight: 600; }
+  .ab-pull {
+    margin-top: 1.75rem; padding: 1rem 1.2rem;
+    border-left: 3px solid var(--teal); background: var(--teal-dim);
+    font-family: 'DM Mono', monospace; font-size: 0.79rem; color: var(--teal); line-height: 1.65;
   }
-  .skill-name { font-size: 0.88rem; font-weight: 500; color: var(--text); }
-  .skill-level { font-size: 0.72rem; color: var(--dim); font-family: 'DM Mono', monospace; }
-  .skill-bar { height: 3px; background: var(--border); }
-  .skill-fill {
-    height: 100%; background: linear-gradient(90deg, var(--teal), #7EC8C8);
-    transition: width 1s cubic-bezier(0.4,0,0.2,1);
-  }
+  .sidebar { display: flex; flex-direction: column; gap: 0.6rem; }
+  .sc { padding: 0.9rem 1.1rem; background: var(--bg3); border: 1px solid var(--border); border-left: 2px solid var(--teal); }
+  .sc-lbl { font-family: 'DM Mono', monospace; font-size: 0.59rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.13em; margin-bottom: 0.3rem; }
+  .sc-val { font-size: 0.83rem; color: var(--text2); line-height: 1.45; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.35rem; }
+  .tag { font-size: 0.69rem; padding: 0.17rem 0.5rem; background: var(--bg4); border: 1px solid var(--border); color: var(--muted); font-weight: 500; }
 
-  .fw-grid { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .fw-tag {
-    font-size: 0.78rem; padding: 0.3rem 0.75rem;
+  /* CERTS */
+  .ct { width: 100%; border-collapse: collapse; }
+  .ct th { background: var(--bg3); color: var(--text2); font-size: 0.74rem; font-weight: 600; padding: 0.68rem 1rem; text-align: left; letter-spacing: 0.04em; border-bottom: 2px solid var(--teal); }
+  .ct td { padding: 0.68rem 1rem; font-size: 0.86rem; border-bottom: 1px solid var(--border); color: var(--text2); vertical-align: middle; }
+  .ct tr:last-child td { border-bottom: none; }
+  .ct tr:nth-child(even) td { background: var(--bg3); }
+  .ct td:first-child { color: var(--text); font-weight: 500; }
+  .pill { display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.67rem; font-weight: 500; padding: 0.18rem 0.6rem; border: 1px solid; letter-spacing: 0.04em; }
+  .p-e { background: var(--green-bg); border-color: rgba(46,204,130,0.28); color: var(--green); }
+  .p-s { background: var(--blue-bg);  border-color: rgba(96,165,250,0.28);  color: var(--blue); }
+  .p-p { background: var(--bg4); border-color: var(--border); color: var(--muted); }
+
+  /* PORTFOLIO */
+  .pg { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; }
+  .pc {
     background: var(--bg3); border: 1px solid var(--border);
-    color: var(--muted); font-weight: 500; transition: all 0.15s;
+    padding: 1.6rem; display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
   }
-  .fw-tag:hover { background: var(--teal-light); border-color: var(--teal); color: var(--teal); }
+  .pc:hover { border-color: var(--teal); transform: translateY(-2px); }
+  .pc-cv { background: linear-gradient(135deg, var(--bg3) 0%, rgba(45,212,170,0.07) 100%); border-color: var(--teal-mid); }
+  .pc-num  { font-family: 'DM Mono', monospace; font-size: 0.59rem; color: var(--dim); letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+  .pc-type { font-size: 0.69rem; font-weight: 600; color: var(--teal); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+  .pc-ttl  { font-size: 0.97rem; font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 0.65rem; }
+  .pc-desc { font-size: 0.83rem; color: var(--text2); line-height: 1.7; margin-bottom: 1.1rem; flex: 1; }
+  .pc-tags { display: flex; flex-wrap: wrap; gap: 0.28rem; margin-bottom: 1.1rem; }
+  .pc-lnk {
+    font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 500; color: var(--teal);
+    text-decoration: none; border-top: 1px solid var(--border); padding-top: 0.85rem;
+    margin-top: auto; display: inline-flex; align-items: center; gap: 0.4rem;
+    transition: gap 0.15s, color 0.15s;
+  }
+  .pc-lnk:hover { gap: 0.7rem; color: var(--text); }
+  .pc-cv .pc-lnk { border-color: var(--teal-mid); }
 
-  /* ── CONTACT ──────────────────────────────────────── */
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  /* SKILLS */
+  .sk { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .sk-hd { font-family: 'DM Mono', monospace; font-size: 0.61rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.15em; padding-bottom: 0.6rem; margin-bottom: 1.2rem; border-bottom: 1px solid var(--border); }
+  .srow { margin-bottom: 1.05rem; }
+  .srow-meta { display: flex; justify-content: space-between; margin-bottom: 0.38rem; }
+  .srow-name { font-size: 0.86rem; font-weight: 500; color: var(--text2); }
+  .srow-lvl  { font-family: 'DM Mono', monospace; font-size: 0.64rem; color: var(--dim); }
+  .sbar { height: 2px; background: var(--border); }
+  .sfill { height: 100%; background: linear-gradient(90deg, var(--teal), rgba(45,212,170,0.45)); transition: width 1.1s cubic-bezier(0.4,0,0.2,1); }
+  .fw { display: flex; flex-wrap: wrap; gap: 0.38rem; margin-bottom: 1.75rem; }
+  .fwtag {
+    font-size: 0.75rem; padding: 0.28rem 0.68rem;
+    background: var(--bg4); border: 1px solid var(--border); color: var(--muted); font-weight: 500;
+    transition: background 0.15s, border-color 0.15s, color 0.15s; cursor: default;
+  }
+  .fwtag:hover { background: var(--teal-dim); border-color: var(--teal-mid); color: var(--teal); }
 
-  .contact-intro {
-    font-size: 0.95rem; color: var(--muted); line-height: 1.8; margin-bottom: 2rem;
+  /* CONTACT */
+  .cg { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .c-intro { font-size: 0.92rem; color: var(--text2); line-height: 1.8; margin-bottom: 2rem; }
+  .crow { display: flex; align-items: flex-start; gap: 1rem; padding: 0.82rem 0; border-bottom: 1px solid var(--border); }
+  .cion {
+    width: 33px; height: 33px; background: var(--teal-dim); border: 1px solid var(--teal-mid);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    color: var(--teal); font-family: 'DM Mono', monospace; font-size: 0.74rem; font-weight: 500;
   }
+  .clbl { font-family: 'DM Mono', monospace; font-size: 0.59rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.18rem; }
+  .cval { font-size: 0.86rem; color: var(--text2); font-weight: 500; }
+  .cval a { color: var(--teal); text-decoration: none; }
+  .cval a:hover { text-decoration: underline; }
+  .avail { margin-top: 1.5rem; padding: 0.95rem 1.15rem; background: var(--teal-dim); border: 1px solid var(--teal-mid); display: flex; align-items: center; gap: 0.75rem; }
+  .adot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); flex-shrink: 0; animation: pulse 2s infinite; }
+  .atxt { font-size: 0.82rem; color: var(--teal); line-height: 1.55; }
 
-  .contact-row {
-    display: flex; align-items: flex-start; gap: 1rem;
-    padding: 0.9rem 0; border-bottom: 1px solid var(--border);
-  }
-  .contact-icon {
-    width: 34px; height: 34px; background: var(--teal-light);
-    border: 1px solid rgba(0,107,107,0.2); display: flex;
-    align-items: center; justify-content: center;
-    font-size: 0.85rem; flex-shrink: 0; color: var(--teal);
-    font-family: 'DM Mono', monospace; font-weight: 600;
-  }
-  .contact-label {
-    font-family: 'DM Mono', monospace; font-size: 0.6rem;
-    color: var(--dim); text-transform: uppercase; letter-spacing: 0.12em;
-    margin-bottom: 0.2rem;
-  }
-  .contact-value { font-size: 0.88rem; color: var(--text); font-weight: 500; }
-  .contact-value a { color: var(--teal); text-decoration: none; }
-  .contact-value a:hover { text-decoration: underline; }
+  .c-right { display: flex; flex-direction: column; gap: 0.7rem; }
+  .bp { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.82rem 1.5rem; background: var(--teal); color: var(--bg); text-decoration: none; font-size: 0.84rem; font-weight: 700; letter-spacing: 0.02em; transition: opacity 0.2s; }
+  .bp:hover { opacity: 0.87; }
+  .bs { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.82rem 1.5rem; background: transparent; color: var(--text2); text-decoration: none; font-size: 0.84rem; font-weight: 600; border: 1px solid var(--border); letter-spacing: 0.02em; transition: all 0.2s; }
+  .bs:hover { border-color: var(--teal); color: var(--teal); }
 
-  .avail-bar {
-    margin-top: 1.5rem; padding: 1rem 1.2rem;
-    background: var(--teal-light); border: 1px solid rgba(0,107,107,0.2);
-    display: flex; align-items: center; gap: 0.8rem;
-  }
-  .avail-dot {
-    width: 9px; height: 9px; border-radius: 50%; background: var(--teal);
-    flex-shrink: 0; animation: pulse 2s infinite;
-  }
-  .avail-text { font-size: 0.84rem; color: var(--teal); line-height: 1.5; }
+  .dlpanel { padding: 1.2rem; background: var(--bg3); border: 1px solid var(--border); margin-top: 0.15rem; }
+  .dl-hd { font-family: 'DM Mono', monospace; font-size: 0.59rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.7rem; }
+  .dll { display: flex; align-items: center; gap: 0.45rem; padding: 0.42rem 0; font-size: 0.82rem; color: var(--teal); text-decoration: none; font-weight: 500; font-family: 'DM Mono', monospace; border-bottom: 1px solid var(--border); transition: color 0.15s; }
+  .dll:last-child { border-bottom: none; }
+  .dll:hover { color: var(--text); }
 
-  .contact-ctas { display: flex; flex-direction: column; gap: 0.75rem; }
+  /* FOOTER */
+  footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1.7rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+  .fc { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--dim); }
+  .fl { display: flex; gap: 1.5rem; }
+  .fl a { font-size: 0.72rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .fl a:hover { color: var(--teal); }
 
-  .btn-primary {
-    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-    padding: 0.85rem 1.5rem; background: var(--navy); color: white;
-    text-decoration: none; font-size: 0.85rem; font-weight: 600;
-    letter-spacing: 0.02em; transition: background 0.2s;
-  }
-  .btn-primary:hover { background: #243f61; }
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes pulse { 0%,100% { box-shadow:0 0 0 0 rgba(45,212,170,0.4); } 50% { box-shadow:0 0 0 5px rgba(45,212,170,0); } }
+  .reveal { opacity:0; transform:translateY(18px); transition:opacity 0.6s, transform 0.6s; }
+  .reveal.in { opacity:1; transform:translateY(0); }
 
-  .btn-secondary {
-    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-    padding: 0.85rem 1.5rem; background: transparent; color: var(--navy);
-    text-decoration: none; font-size: 0.85rem; font-weight: 600;
-    border: 2px solid var(--navy); letter-spacing: 0.02em; transition: all 0.2s;
-  }
-  .btn-secondary:hover { background: var(--navy); color: white; }
-
-  .quick-downloads {
-    margin-top: 1.5rem; padding: 1.25rem;
-    background: var(--bg3); border: 1px solid var(--border);
-  }
-  .qd-title {
-    font-family: 'DM Mono', monospace; font-size: 0.62rem;
-    color: var(--dim); text-transform: uppercase; letter-spacing: 0.12em;
-    margin-bottom: 0.75rem;
-  }
-  .qd-link {
-    display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0;
-    font-size: 0.83rem; color: var(--teal); text-decoration: none;
-    border-bottom: 1px solid var(--border); font-weight: 500;
-    transition: color 0.15s;
-  }
-  .qd-link:last-child { border-bottom: none; }
-  .qd-link:hover { color: var(--navy); }
-
-  /* ── FOOTER ───────────────────────────────────────── */
-  footer {
-    background: var(--navy); padding: 2rem 3rem;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.45); }
-  .footer-links { display: flex; gap: 1.5rem; }
-  .footer-links a {
-    font-size: 0.78rem; color: rgba(255,255,255,0.45);
-    text-decoration: none; transition: color 0.2s;
-  }
-  .footer-links a:hover { color: #7EC8C8; }
-
-  /* ── ANIMATIONS ───────────────────────────────────── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes pulse {
-    0%,100% { opacity:1; box-shadow: 0 0 0 0 rgba(0,107,107,0.4); }
-    50%      { opacity:0.85; box-shadow: 0 0 0 5px rgba(0,107,107,0); }
-  }
-
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── RESPONSIVE ───────────────────────────────────── */
+  /* RESPONSIVE */
   @media (max-width: 720px) {
-    nav { padding: 0 1.5rem; }
-    .nav-links { display: none; }
-    section { padding: 3.5rem 1.5rem; }
-    .hero { padding: 80px 1.5rem 48px; }
-    .hero-inner { grid-template-columns: 1fr; }
-    .hero-badges { flex-direction: row; align-items: flex-start; flex-wrap: wrap; }
-    .about-grid, .skills-grid, .contact-grid { grid-template-columns: 1fr; }
-    .portfolio-grid { grid-template-columns: 1fr; }
+    nav { padding: 0 1.25rem; } .nav-links { display: none; }
+    section { padding: 4rem 1.25rem; }
+    .hero { padding: 90px 1.25rem 4rem; min-height: auto; }
+    .ab-grid, .sk, .cg { grid-template-columns: 1fr; }
+    .pg { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .hero-name { font-size: 2.6rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-logo">garethsutton.cyber</div>
+  <div class="nav-logo">// garethsutton.cyber</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#certifications">Certs</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
+<section class="hero" id="hero">
   <div class="hero-inner">
-    <div>
-      <div class="hero-tag">Cyber Security Professional — GRC Focus</div>
-      <h1 class="hero-name">Gareth Sutton</h1>
-      <div class="hero-title">GRC Analyst &amp; Information Security Professional</div>
-      <div class="hero-sub">CompTIA Security+ (SY0-701) &nbsp;·&nbsp; ISO 27001 &nbsp;·&nbsp; UK GDPR &nbsp;·&nbsp; NIST CSF 2.0</div>
-      <div class="hero-contact">
-        <span id="h-email-wrap"><a id="h-email" href="#">cysecsutton@gmail.com</a></span>
-        <span class="dot">·</span>
-        <a href="https://linkedin.com/in/gareth-sutton999" target="_blank">LinkedIn</a>
-        <span class="dot">·</span>
-        <span>Cumbria, UK — Remote First</span>
-      </div>
+    <div class="hero-eyebrow">Cyber Security Professional &mdash; GRC Focus</div>
+    <h1 class="hero-name">Gareth<br><span class="hero-name-accent">Sutton.</span></h1>
+    <div class="hero-title">GRC Analyst &amp; Information Security Professional</div>
+    <div class="hero-sub">CompTIA Security+ (SY0-701) &nbsp;&middot;&nbsp; ISO 27001 &nbsp;&middot;&nbsp; UK GDPR &nbsp;&middot;&nbsp; NIST CSF 2.0</div>
+    <div class="hero-contact">
+      <a id="h-email" href="#">cysecsutton@gmail.com</a>
+      <span class="sep">&middot;</span>
+      <a href="https://linkedin.com/in/gareth-sutton999" target="_blank">LinkedIn</a>
+      <span class="sep">&middot;</span>
+      <span>Cumbria, UK &mdash; Remote First</span>
     </div>
     <div class="hero-badges">
-      <div class="badge badge-earned">✓ Security+ SY0-701</div>
-      <div class="badge badge-earned">✓ Microsoft Purview</div>
-      <div class="badge badge-active">⬡ ISC2 CC — Studying</div>
-      <div class="badge badge-available">● Open to Opportunities</div>
+      <span class="hb hb-g">&#10003; Security+ SY0-701</span>
+      <span class="hb hb-g">&#10003; Microsoft Purview</span>
+      <span class="hb hb-b">&#9645; ISC2 CC &mdash; Studying</span>
+      <span class="hb hb-t">&#9679; Open to Opportunities</span>
     </div>
   </div>
+  <div class="hero-scroll">Scroll to explore</div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
+<section id="about" class="s-alt">
   <div class="inner reveal">
-    <div class="section-eyebrow">01 — About</div>
-    <h2 class="section-title">Background &amp; <span>Approach</span></h2>
-    <div class="about-grid">
-      <div class="about-text">
-        <p>My route into cyber security isn't conventional — and that's a genuine strength. After 15 years directing my own commercial business, I understand how organisations <strong>actually operate</strong>: the human decisions behind risk, the gap between policy and practice, and what it takes to make compliance stick in the real world.</p>
-        <p>Before that, I spent three years as a <strong>Senior IT Recruitment Consultant at Venn Group</strong>, placing technology professionals specifically within NHS and public sector organisations. That experience gave me deep familiarity with regulated, compliance-driven environments that most junior candidates simply don't have.</p>
-        <p>I passed <strong>CompTIA Security+ (SY0-701)</strong> in February 2026 and have since built a practical GRC portfolio — including an ISO 27001 Gap Analysis, a NIST CSF-aligned Incident Response Plan, and a full UK GDPR Data Audit &amp; DPIA. These are available for download below.</p>
-        <div class="about-pull">"Security isn't just technical. It's behavioural, organisational, and human. That's where my background gives me an edge."</div>
+    <div class="s-eye">01 &mdash; About</div>
+    <h2 class="s-title">Background &amp; <em>Approach</em></h2>
+    <div class="ab-grid">
+      <div class="ab-body">
+        <p>My route into cyber security isn&rsquo;t conventional &mdash; and that&rsquo;s a genuine strength. After 15 years directing my own commercial business, I understand how organisations <strong>actually operate</strong>: the human decisions behind risk, the gap between policy and practice, and what it takes to make compliance stick in the real world.</p>
+        <p>Before that, I spent three years as a <strong>Senior IT Recruitment Consultant at Venn Group</strong>, placing technology professionals specifically within NHS and public sector organisations &mdash; giving me genuine familiarity with regulated, compliance-driven environments that most junior candidates simply don&rsquo;t have.</p>
+        <p>I passed <strong>CompTIA Security+ (SY0-701)</strong> in February 2026 and have since built a practical GRC portfolio &mdash; an ISO 27001 Gap Analysis, a NIST CSF-aligned Incident Response Plan, and a full UK GDPR Data Audit &amp; DPIA. All available for download below.</p>
+        <div class="ab-pull">// &ldquo;Security isn&rsquo;t just technical. It&rsquo;s behavioural, organisational, and human. That&rsquo;s where my background gives me an edge.&rdquo;</div>
       </div>
-      <div class="about-sidebar">
-        <div class="sidebar-item">
-          <div class="sidebar-label">Location</div>
-          <div class="sidebar-value">Coniston, Cumbria<br>Remote-first · Hybrid considered</div>
-        </div>
-        <div class="sidebar-item">
-          <div class="sidebar-label">Target Roles</div>
-          <div class="sidebar-value">GRC Analyst · Information Governance · Cyber Security Analyst</div>
-        </div>
-        <div class="sidebar-item">
-          <div class="sidebar-label">Frameworks</div>
-          <div class="tag-grid">
-            <span class="tag">ISO 27001</span><span class="tag">NIST CSF</span>
-            <span class="tag">UK GDPR</span><span class="tag">DPIA</span>
-            <span class="tag">ISO 27002</span><span class="tag">SOC 2</span>
-          </div>
-        </div>
-        <div class="sidebar-item">
-          <div class="sidebar-label">Availability</div>
-          <div class="sidebar-value">Immediately available</div>
-        </div>
+      <div class="sidebar">
+        <div class="sc"><div class="sc-lbl">Location</div><div class="sc-val">Coniston, Cumbria<br>Remote-first &middot; Hybrid considered</div></div>
+        <div class="sc"><div class="sc-lbl">Target Roles</div><div class="sc-val">GRC Analyst &middot; Information Governance &middot; Cyber Security Analyst</div></div>
+        <div class="sc"><div class="sc-lbl">Frameworks</div><div class="tag-row"><span class="tag">ISO 27001</span><span class="tag">NIST CSF</span><span class="tag">UK GDPR</span><span class="tag">DPIA</span><span class="tag">ISO 27002</span><span class="tag">SOC 2</span></div></div>
+        <div class="sc"><div class="sc-lbl">Availability</div><div class="sc-val">Immediately available</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CERTIFICATIONS -->
 <section id="certifications">
   <div class="inner reveal">
-    <div class="section-eyebrow">02 — Credentials</div>
-    <h2 class="section-title">Certifications &amp; <span>Qualifications</span></h2>
-    <table class="certs-table">
-      <thead>
-        <tr>
-          <th style="width:55%">Certification</th>
-          <th style="width:20%">Issuer</th>
-          <th style="width:12%">Date</th>
-          <th style="width:13%">Status</th>
-        </tr>
-      </thead>
+    <div class="s-eye">02 &mdash; Credentials</div>
+    <h2 class="s-title">Certifications &amp; <em>Qualifications</em></h2>
+    <table class="ct">
+      <thead><tr><th style="width:52%">Certification</th><th style="width:18%">Issuer</th><th style="width:14%">Date</th><th style="width:16%">Status</th></tr></thead>
       <tbody>
-        <tr>
-          <td><strong>Security+ (SY0-701)</strong></td>
-          <td>CompTIA</td><td>Feb 2026</td>
-          <td><span class="status-pill pill-earned">✓ Active</span></td>
-        </tr>
-        <tr>
-          <td><strong>Microsoft Purview — Information Protection</strong></td>
-          <td>Microsoft</td><td>2026</td>
-          <td><span class="status-pill pill-earned">✓ Active</span></td>
-        </tr>
-        <tr>
-          <td><strong>Certified in Cybersecurity (CC)</strong></td>
-          <td>(ISC)²</td><td>2026</td>
-          <td><span class="status-pill pill-studying">Studying</span></td>
-        </tr>
-        <tr>
-          <td>ISO 27001 Lead Implementer</td>
-          <td>PECB</td><td>2026</td>
-          <td><span class="status-pill pill-planned">Planned</span></td>
-        </tr>
-        <tr>
-          <td>CySA+ (CS0-003)</td>
-          <td>CompTIA</td><td>2026</td>
-          <td><span class="status-pill pill-planned">Planned</span></td>
-        </tr>
+        <tr><td>Security+ (SY0-701)</td><td>CompTIA</td><td>Feb 2026</td><td><span class="pill p-e">&#10003; Active</span></td></tr>
+        <tr><td>Microsoft Purview &mdash; Information Protection</td><td>Microsoft</td><td>2026</td><td><span class="pill p-e">&#10003; Active</span></td></tr>
+        <tr><td>Certified in Cybersecurity (CC)</td><td>(ISC)&sup2;</td><td>2026</td><td><span class="pill p-s">Studying</span></td></tr>
+        <tr><td>ISO 27001 Lead Implementer</td><td>PECB</td><td>2026</td><td><span class="pill p-p">Planned</span></td></tr>
+        <tr><td>CySA+ (CS0-003)</td><td>CompTIA</td><td>2026</td><td><span class="pill p-p">Planned</span></td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section id="portfolio">
+<section id="portfolio" class="s-alt">
   <div class="inner reveal">
-    <div class="section-eyebrow">03 — Portfolio</div>
-    <h2 class="section-title">Applied Work &amp; <span>Projects</span></h2>
-    <div class="portfolio-grid">
-
-      <div class="p-card">
-        <div class="p-card-num">PROJECT 001</div>
-        <div class="p-card-type">Risk Assessment</div>
-        <div class="p-card-title">ISO 27001:2022 Gap Analysis</div>
-        <div class="p-card-desc">Full clause-by-clause gap analysis for a real hospitality estate, mapped against ISO 27001:2022 requirements. Covers Clauses 4–10 and all Annex A controls with findings, risk ratings, and an 18-month remediation roadmap.</div>
-        <div class="p-card-tags">
-          <span class="tag">ISO 27001</span><span class="tag">Gap Analysis</span><span class="tag">Risk Register</span><span class="tag">Annex A</span>
-        </div>
-        <a href="/documents/langdale-iso27001-gap-analysis.docx" class="p-card-link">Download Document ↓</a>
+    <div class="s-eye">03 &mdash; Portfolio</div>
+    <h2 class="s-title">Applied Work &amp; <em>Projects</em></h2>
+    <div class="pg">
+      <div class="pc">
+        <div class="pc-num">PROJECT 001</div>
+        <div class="pc-type">Risk Assessment</div>
+        <div class="pc-ttl">ISO 27001:2022 Gap Analysis</div>
+        <div class="pc-desc">Full clause-by-clause gap analysis mapped against ISO 27001:2022. Covers Clauses 4&ndash;10 and all Annex A controls with findings, risk ratings, and an 18-month remediation roadmap.</div>
+        <div class="pc-tags"><span class="tag">ISO 27001</span><span class="tag">Gap Analysis</span><span class="tag">Risk Register</span><span class="tag">Annex A</span></div>
+        <a href="/documents/langdale-iso27001-gap-analysis.docx" class="pc-lnk">&#8595; Download Document</a>
       </div>
-
-      <div class="p-card">
-        <div class="p-card-num">PROJECT 002</div>
-        <div class="p-card-type">Incident Response</div>
-        <div class="p-card-title">Ransomware Incident Response Plan</div>
-        <div class="p-card-desc">NIST CSF 2.0-aligned IR plan covering all six response phases for a ransomware attack. Includes IRT roles, severity classification, containment procedures, UK GDPR 72-hour notification guidance, and communication templates.</div>
-        <div class="p-card-tags">
-          <span class="tag">NIST CSF 2.0</span><span class="tag">IR Planning</span><span class="tag">UK GDPR</span><span class="tag">Business Continuity</span>
-        </div>
-        <a href="/documents/ransomware-irp.docx" class="p-card-link">Download Document ↓</a>
+      <div class="pc">
+        <div class="pc-num">PROJECT 002</div>
+        <div class="pc-type">Incident Response</div>
+        <div class="pc-ttl">Ransomware Incident Response Plan</div>
+        <div class="pc-desc">NIST CSF 2.0-aligned IR plan covering all six response phases. Includes IRT roles, severity classification, containment steps, UK GDPR 72-hour notification guidance, and communication templates.</div>
+        <div class="pc-tags"><span class="tag">NIST CSF 2.0</span><span class="tag">IR Planning</span><span class="tag">UK GDPR</span><span class="tag">BCP</span></div>
+        <a href="/documents/ransomware-irp.docx" class="pc-lnk">&#8595; Download Document</a>
       </div>
-
-      <div class="p-card">
-        <div class="p-card-num">PROJECT 003</div>
-        <div class="p-card-type">Data Protection</div>
-        <div class="p-card-title">UK GDPR Data Audit &amp; DPIA</div>
-        <div class="p-card-desc">Three-part framework: Article 30 ROPA across 7 data categories, a worked DPIA for CCTV processing with Legitimate Interests Assessment and risk register, plus data subject rights procedure, retention schedule, and breach checklist.</div>
-        <div class="p-card-tags">
-          <span class="tag">UK GDPR</span><span class="tag">DPIA</span><span class="tag">ROPA / Art.30</span><span class="tag">DPA 2018</span>
-        </div>
-        <a href="/documents/gdpr-dpia.docx" class="p-card-link">Download Document ↓</a>
+      <div class="pc">
+        <div class="pc-num">PROJECT 003</div>
+        <div class="pc-type">Data Protection</div>
+        <div class="pc-ttl">UK GDPR Data Audit &amp; DPIA</div>
+        <div class="pc-desc">Three-part framework: Article 30 ROPA across 7 data categories, a worked DPIA for CCTV with LIA and risk register, plus data subject rights procedure, retention schedule, and breach checklist.</div>
+        <div class="pc-tags"><span class="tag">UK GDPR</span><span class="tag">DPIA</span><span class="tag">ROPA / Art.30</span><span class="tag">DPA 2018</span></div>
+        <a href="/documents/gdpr-dpia.docx" class="pc-lnk">&#8595; Download Document</a>
       </div>
-
-      <div class="p-card p-card-cv">
-        <div class="p-card-num">CV / RÉSUMÉ</div>
-        <div class="p-card-type">Professional Profile</div>
-        <div class="p-card-title">Gareth Sutton — Full Curriculum Vitae</div>
-        <div class="p-card-desc">Full CV covering qualifications, GRC competencies, Security+ certification, and 15+ years of commercial and public sector experience. Available in PDF and Word formats.</div>
-        <div class="p-card-tags">
-          <span class="tag">Security+</span><span class="tag">GRC</span><span class="tag">ISO 27001</span><span class="tag">NHS / Public Sector</span>
-        </div>
-        <a href="/documents/gareth-sutton-cv.pdf" class="p-card-link">Download CV (PDF) ↓</a>
+      <div class="pc pc-cv">
+        <div class="pc-num">CV / R&Eacute;SUM&Eacute;</div>
+        <div class="pc-type">Professional Profile</div>
+        <div class="pc-ttl">Gareth Sutton &mdash; Curriculum Vitae</div>
+        <div class="pc-desc">Full CV covering qualifications, GRC competencies, Security+ certification, and 15+ years of commercial and public sector experience. PDF and Word formats available.</div>
+        <div class="pc-tags"><span class="tag">Security+</span><span class="tag">GRC</span><span class="tag">ISO 27001</span><span class="tag">NHS / Public Sector</span></div>
+        <a href="/documents/gareth-sutton-cv.pdf" class="pc-lnk">&#8595; Download CV (PDF)</a>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="inner reveal">
-    <div class="section-eyebrow">04 — Skills</div>
-    <h2 class="section-title">Technical &amp; <span>Domain Skills</span></h2>
-    <div class="skills-grid">
+    <div class="s-eye">04 &mdash; Skills</div>
+    <h2 class="s-title">Technical &amp; <em>Domain Skills</em></h2>
+    <div class="sk">
       <div>
-        <div class="skill-group-title">// Core Competencies</div>
-        <div class="skill-row"><div class="skill-meta"><span class="skill-name">Risk Assessment &amp; Management</span><span class="skill-level">Advanced</span></div><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
-        <div class="skill-row"><div class="skill-meta"><span class="skill-name">Information Governance</span><span class="skill-level">Advanced</span></div><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
-        <div class="skill-row"><div class="skill-meta"><span class="skill-name">Security Policy &amp; Controls</span><span class="skill-level">Proficient</span></div><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
-        <div class="skill-row"><div class="skill-meta"><span class="skill-name">GDPR / Data Protection</span><span class="skill-level">Proficient</span></div><div class="skill-bar"><div class="skill-fill" style="width:76%"></div></div></div>
-        <div class="skill-row"><div class="skill-meta"><span class="skill-name">Incident Response Planning</span><span class="skill-level">Proficient</span></div><div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div></div>
-        <div class="skill-row"><div class="skill-meta"><span class="skill-name">Security Architecture Concepts</span><span class="skill-level">Developing</span></div><div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div></div>
-        <div class="skill-row"><div class="skill-meta"><span class="skill-name">Microsoft Purview / DLP</span><span class="skill-level">Developing</span></div><div class="skill-bar"><div class="skill-fill" style="width:55%"></div></div></div>
+        <div class="sk-hd">// Core Competencies</div>
+        <div class="srow"><div class="srow-meta"><span class="srow-name">Risk Assessment &amp; Management</span><span class="srow-lvl">Advanced</span></div><div class="sbar"><div class="sfill" style="width:85%"></div></div></div>
+        <div class="srow"><div class="srow-meta"><span class="srow-name">Information Governance</span><span class="srow-lvl">Advanced</span></div><div class="sbar"><div class="sfill" style="width:82%"></div></div></div>
+        <div class="srow"><div class="srow-meta"><span class="srow-name">Security Policy &amp; Controls</span><span class="srow-lvl">Proficient</span></div><div class="sbar"><div class="sfill" style="width:78%"></div></div></div>
+        <div class="srow"><div class="srow-meta"><span class="srow-name">GDPR / Data Protection</span><span class="srow-lvl">Proficient</span></div><div class="sbar"><div class="sfill" style="width:76%"></div></div></div>
+        <div class="srow"><div class="srow-meta"><span class="srow-name">Incident Response Planning</span><span class="srow-lvl">Proficient</span></div><div class="sbar"><div class="sfill" style="width:72%"></div></div></div>
+        <div class="srow"><div class="srow-meta"><span class="srow-name">Security Architecture</span><span class="srow-lvl">Developing</span></div><div class="sbar"><div class="sfill" style="width:60%"></div></div></div>
+        <div class="srow"><div class="srow-meta"><span class="srow-name">Microsoft Purview / DLP</span><span class="srow-lvl">Developing</span></div><div class="sbar"><div class="sfill" style="width:55%"></div></div></div>
       </div>
       <div>
-        <div class="skill-group-title">// Frameworks &amp; Standards</div>
-        <div class="fw-grid" style="margin-bottom:2rem">
-          <span class="fw-tag">ISO 27001:2022</span><span class="fw-tag">ISO 27002</span>
-          <span class="fw-tag">NIST CSF 2.0</span><span class="fw-tag">UK GDPR</span>
-          <span class="fw-tag">DPA 2018</span><span class="fw-tag">SOC 2</span>
-          <span class="fw-tag">DPIA</span><span class="fw-tag">CIA Triad</span>
-          <span class="fw-tag">Zero Trust</span><span class="fw-tag">Defence in Depth</span>
-          <span class="fw-tag">PDCA Cycle</span><span class="fw-tag">ISMS Design</span>
+        <div class="sk-hd">// Frameworks &amp; Standards</div>
+        <div class="fw">
+          <span class="fwtag">ISO 27001:2022</span><span class="fwtag">ISO 27002</span><span class="fwtag">NIST CSF 2.0</span>
+          <span class="fwtag">UK GDPR</span><span class="fwtag">DPA 2018</span><span class="fwtag">SOC 2</span>
+          <span class="fwtag">DPIA</span><span class="fwtag">CIA Triad</span><span class="fwtag">Zero Trust</span>
+          <span class="fwtag">Defence in Depth</span><span class="fwtag">PDCA Cycle</span><span class="fwtag">ISMS Design</span>
         </div>
-        <div class="skill-group-title">// Tools &amp; Technologies</div>
-        <div class="fw-grid">
-          <span class="fw-tag">Microsoft Purview</span><span class="fw-tag">Microsoft 365</span>
-          <span class="fw-tag">Azure Fundamentals</span><span class="fw-tag">Defender</span>
-          <span class="fw-tag">Sentinel (Awareness)</span><span class="fw-tag">Entra ID</span>
-          <span class="fw-tag">TryHackMe</span><span class="fw-tag">Wireshark</span>
-          <span class="fw-tag">Risk Registers</span><span class="fw-tag">Audit Documentation</span>
+        <div class="sk-hd">// Tools &amp; Technologies</div>
+        <div class="fw">
+          <span class="fwtag">Microsoft Purview</span><span class="fwtag">Microsoft 365</span><span class="fwtag">Azure Fundamentals</span>
+          <span class="fwtag">Defender</span><span class="fwtag">Sentinel (Awareness)</span><span class="fwtag">Entra ID</span>
+          <span class="fwtag">TryHackMe</span><span class="fwtag">Wireshark</span>
+          <span class="fwtag">Risk Registers</span><span class="fwtag">Audit Documentation</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
+<section id="contact" class="s-alt">
   <div class="inner reveal">
-    <div class="section-eyebrow">05 — Contact</div>
-    <h2 class="section-title">Let's Talk <span>Opportunities</span></h2>
-    <div class="contact-grid">
+    <div class="s-eye">05 &mdash; Contact</div>
+    <h2 class="s-title">Let&rsquo;s Talk <em>Opportunities</em></h2>
+    <div class="cg">
       <div>
-        <p class="contact-intro">I'm actively seeking GRC analyst, information governance, and cyber security roles — remote or hybrid. If you're looking for someone who brings real analytical rigour and genuine GRC knowledge, I'd love to hear from you.</p>
-
-        <div class="contact-row">
-          <div class="contact-icon">✉</div>
-          <div><div class="contact-label">Email</div><div class="contact-value"><a id="c-email" href="#">cysecsutton@gmail.com</a></div></div>
-        </div>
-        <div class="contact-row">
-          <div class="contact-icon">in</div>
-          <div><div class="contact-label">LinkedIn</div><div class="contact-value"><a href="https://linkedin.com/in/gareth-sutton999" target="_blank">linkedin.com/in/gareth-sutton999</a></div></div>
-        </div>
-        <div class="contact-row">
-          <div class="contact-icon">⌂</div>
-          <div><div class="contact-label">Location</div><div class="contact-value">Coniston, Cumbria — Remote First</div></div>
-        </div>
-
-        <div class="avail-bar">
-          <div class="avail-dot"></div>
-          <div class="avail-text">Actively seeking roles — immediately available.<br>Remote strongly preferred · Hybrid considered.</div>
-        </div>
+        <p class="c-intro">I&rsquo;m actively seeking GRC analyst, information governance, and cyber security roles &mdash; remote or hybrid. If you&rsquo;re looking for someone who brings real-world judgement and genuine GRC knowledge, I&rsquo;d love to hear from you.</p>
+        <div class="crow"><div class="cion">@</div><div><div class="clbl">Email</div><div class="cval"><a id="c-email" href="#">cysecsutton@gmail.com</a></div></div></div>
+        <div class="crow"><div class="cion">in</div><div><div class="clbl">LinkedIn</div><div class="cval"><a href="https://linkedin.com/in/gareth-sutton999" target="_blank">linkedin.com/in/gareth-sutton999</a></div></div></div>
+        <div class="crow"><div class="cion">&#9679;</div><div><div class="clbl">Location</div><div class="cval">Coniston, Cumbria &mdash; Remote First</div></div></div>
+        <div class="avail"><div class="adot"></div><div class="atxt">Actively seeking roles &mdash; immediately available.<br>Remote strongly preferred &middot; Hybrid considered.</div></div>
       </div>
-
-      <div>
-        <div class="contact-ctas">
-          <a id="c-email-btn" href="#" class="btn-primary">✉ &nbsp;Send Me an Email</a>
-          <a href="https://linkedin.com/in/gareth-sutton999" target="_blank" class="btn-secondary">in &nbsp;Connect on LinkedIn</a>
-        </div>
-        <div class="quick-downloads">
-          <div class="qd-title">// Download Portfolio</div>
-          <a href="/documents/gareth-sutton-cv.pdf" class="qd-link">↓ &nbsp;Curriculum Vitae (PDF)</a>
-          <a href="/documents/gareth-sutton-cv.docx" class="qd-link">↓ &nbsp;Curriculum Vitae (Word)</a>
-          <a href="/documents/langdale-iso27001-gap-analysis.docx" class="qd-link">↓ &nbsp;ISO 27001 Gap Analysis</a>
-          <a href="/documents/ransomware-irp.docx" class="qd-link">↓ &nbsp;Ransomware Incident Response Plan</a>
-          <a href="/documents/gdpr-dpia.docx" class="qd-link">↓ &nbsp;UK GDPR Data Audit &amp; DPIA</a>
+      <div class="c-right">
+        <a id="c-btn" href="#" class="bp">&#9993;&nbsp; Send Me an Email</a>
+        <a href="https://linkedin.com/in/gareth-sutton999" target="_blank" class="bs">in&nbsp; Connect on LinkedIn</a>
+        <div class="dlpanel">
+          <div class="dl-hd">// Download Portfolio</div>
+          <a href="/documents/gareth-sutton-cv.pdf" class="dll">&#8595;&nbsp; Curriculum Vitae (PDF)</a>
+          <a href="/documents/gareth-sutton-cv.docx" class="dll">&#8595;&nbsp; Curriculum Vitae (Word)</a>
+          <a href="/documents/langdale-iso27001-gap-analysis.docx" class="dll">&#8595;&nbsp; ISO 27001 Gap Analysis</a>
+          <a href="/documents/ransomware-irp.docx" class="dll">&#8595;&nbsp; Ransomware Incident Response Plan</a>
+          <a href="/documents/gdpr-dpia.docx" class="dll">&#8595;&nbsp; UK GDPR Data Audit &amp; DPIA</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-copy">© 2026 Gareth Sutton — Cyber Security Professional · cysecsutton.github.io</div>
-  <div class="footer-links">
+  <div class="fc">&#169; 2026 Gareth Sutton &mdash; cysecsutton.github.io</div>
+  <div class="fl">
     <a id="f-email" href="#">Email</a>
     <a href="https://linkedin.com/in/gareth-sutton999" target="_blank">LinkedIn</a>
-    <a href="#about">Back to Top ↑</a>
+    <a href="#hero">Back to Top &#8593;</a>
   </div>
 </footer>
 
 <script>
-  // Email — built in JS so Cloudflare can't intercept
-  (function() {
-    var e = 'cysecsutton' + '@' + 'gmail.com';
-    var m = 'mailto:' + e;
-    ['h-email','c-email','c-email-btn','f-email'].forEach(function(id) {
-      var el = document.getElementById(id);
-      if (!el) return;
-      el.href = m;
-      if (id === 'h-email' || id === 'c-email') el.textContent = e;
+  // Email assembled in JS — Cloudflare cannot touch this
+  (function(){
+    var e='cysecsutton'+'@'+'gmail.com', m='mailto:'+e;
+    ['h-email','c-email','c-btn','f-email'].forEach(function(id){
+      var el=document.getElementById(id); if(!el) return;
+      el.href=m;
+      if(id==='h-email'||id==='c-email') el.textContent=e;
     });
   })();
 
   // Scroll reveal
-  var ro = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e, i) {
-      if (e.isIntersecting) {
-        setTimeout(function() { e.target.classList.add('visible'); }, i * 80);
-        ro.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(function(el) { ro.observe(el); });
+  var ro=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);} });
+  },{threshold:0.07});
+  document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
 
   // Skill bar animation
-  var bo = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        var el = e.target, w = el.style.width;
-        el.style.width = '0';
-        setTimeout(function() { el.style.width = w; }, 120);
-        bo.unobserve(el);
+  var bo=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var el=e.target,w=el.style.width; el.style.width='0';
+        setTimeout(function(){el.style.width=w;},100); bo.unobserve(el);
       }
     });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.skill-fill').forEach(function(b) { bo.observe(b); });
+  },{threshold:0.1});
+  document.querySelectorAll('.sfill').forEach(function(b){bo.observe(b);});
 
-  // Nav active highlight
-  var secs = document.querySelectorAll('section[id]');
-  var links = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', function() {
-    var cur = '';
-    secs.forEach(function(s) { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
-    links.forEach(function(a) {
-      a.style.color = a.getAttribute('href') === '#' + cur ? '#7EC8C8' : '';
-    });
-  });
+  // Nav highlight
+  var secs=document.querySelectorAll('section[id]'), lnks=document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll',function(){
+    var cur='';
+    secs.forEach(function(s){if(window.scrollY>=s.offsetTop-80)cur=s.id;});
+    lnks.forEach(function(a){a.style.color=a.getAttribute('href')==='#'+cur?'var(--teal)':'';});
+  },{passive:true});
 </script>
 </body>
 </html>
